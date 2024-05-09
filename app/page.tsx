@@ -1,6 +1,7 @@
 import CategoryList from "./components/ui/category-list";
 import Header from "./components/ui/header";
 import Search from "./components/ui/search";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,6 +12,17 @@ export default function Home() {
       </div>
       <div className="px-5 pt-6">
         <CategoryList />
+      </div>
+      <div className="px-5 pt-6">
+        <Image
+          src="/promo-banner.png"
+          alt="Até 30% de descontos em pizzas"
+          width={0}
+          height={0}
+          className="h-auto w-full object-contain"
+          sizes="100vw"
+          quality={100}
+        />
       </div>
     </>
   );
