@@ -5,8 +5,25 @@ import Header from "./components/ui/header";
 import ProductList from "./components/ui/product-list";
 import Search from "./components/ui/search";
 import Image from "next/image";
+import { db } from "./lib/prisma";
 
-export default function Home() {
+const Home = async () => {
+  const products = await db.product.findMany({
+    where: {
+      discountPercentage: {
+        gt: 0,
+      },
+    },
+    take: 10,
+    include: {
+      restaurant: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
   return (
     <>
       <Header />
@@ -37,8 +54,10 @@ export default function Home() {
             Ver todos <ChevronRightIcon size={16} />{" "}
           </Button>
         </div>
-        <ProductList />
+        <ProductList products={products} />
       </div>
     </>
   );
-}
+};
+
+export default Home;
