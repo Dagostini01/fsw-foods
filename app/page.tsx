@@ -6,6 +6,7 @@ import ProductList from "./components/ui/product-list";
 import Search from "./components/ui/search";
 import Image from "next/image";
 import { db } from "./lib/prisma";
+import PromoBanner from "./components/ui/promo-banner";
 
 const Home = async () => {
   const products = await db.product.findMany({
@@ -34,14 +35,9 @@ const Home = async () => {
         <CategoryList />
       </div>
       <div className="px-5 pt-6">
-        <Image
-          src="/promo-banner.png"
+        <PromoBanner
+          src={"/promo-banner01.png"}
           alt="Até 30% de descontos em pizzas"
-          width={0}
-          height={0}
-          className="h-auto w-full object-contain"
-          sizes="100vw"
-          quality={100}
         />
       </div>
       <div className="space-y-1 pt-6">
@@ -55,6 +51,12 @@ const Home = async () => {
           </Button>
         </div>
         <ProductList products={products} />
+      </div>
+      <div className="px-5 pt-6">
+        <PromoBanner
+          src={"/promo-banner02.png"}
+          alt="A partir de R$17,90 em lanches"
+        />
       </div>
     </>
   );

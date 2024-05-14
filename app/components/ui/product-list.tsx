@@ -11,7 +11,7 @@ interface ProductListProps {
         };
       };
     };
-  }>[];
+  }>[]; //Lista de produto que tem restaurante
 }
 
 const ProductList = async ({ products }: ProductListProps) => {
